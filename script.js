@@ -1,41 +1,66 @@
 // Year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Smooth anchor scroll (native is okay, but this makes it feel nicer)
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener("click", (e) => {
-    const id = a.getAttribute("href");
-    if (!id || id === "#") return;
-    const el = document.querySelector(id);
-    if (!el) return;
-    e.preventDefault();
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+// Cursor aura follow
+const aura = document.querySelector(".cursorAura");
+window.addEventListener("mousemove", (e) => {
+  aura.style.left = e.clientX + "px";
+  aura.style.top = e.clientY + "px";
 });
 
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add("show");
-  });
-}, { threshold: 0.14 });
+// Micro “Generate a vibe” prompts
+const quickPrompts = [
+  "You match someone who laughs like neon in a quiet room. DM them a color.",
+  "Your next match speaks in textures. Ask: ‘what does Sunday feel like?’",
+  "You collide with a stranger who carries your same song — but in reverse.",
+  "A soft-glitch aura approaches. Trade 3 words. No context. Just truth.",
+  "Match found: the person you needed, not the one you expected. Say hello like a poem.",
+  "You share a mood-season. Build a tiny ritual together: coffee, sky, one secret."
+];
 
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+const promptText = document.getElementById("promptText");
+document.getElementById("spawnPrompt").addEventListener("click", () => {
+  const pick = quickPrompts[Math.floor(Math.random() * quickPrompts.length)];
+  promptText.textContent = pick;
+});
 
-// Simple tilt effect (no libraries)
-function attachTilt(el){
-  const strength = 10; // degrees
-  el.addEventListener("mousemove", (e) => {
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-    const rx = ((y / r.height) - 0.5) * -strength;
-    const ry = ((x / r.width) - 0.5) * strength;
-    el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
-  });
-  el.addEventListener("mouseleave", () => {
-    el.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
-  });
+// Oracle generator
+const oracleOut = document.getElementById("oracleOut");
+
+function clean(s){ return (s || "").trim(); }
+
+function oracleSentence(mood, aesthetic, energy){
+  const openers = [
+    "A match appears through the static:",
+    "The feed bends and reveals:",
+    "A signal breaks the surface:",
+    "Your aura syncs with:"
+  ];
+  const tasks = [
+    "Send them a message that starts with a metaphor.",
+    "Ask them to describe their day as a color palette.",
+    "Trade a small truth, then disappear for an hour.",
+    "Share a photo of something ordinary that feels unreal.",
+    "Give them a nickname based on their vibe."
+  ];
+  const twists = [
+    "If they reply in under 3 minutes, you’re in the same timeline.",
+    "If they reply late, they’re from the parallel dusk.",
+    "If they use an emoji you didn’t expect, the match is real.",
+    "If they mirror your wording, you’ve met before — somewhere else."
+  ];
+
+  const o = openers[Math.floor(Math.random()*openers.length)];
+  const t = tasks[Math.floor(Math.random()*tasks.length)];
+  const w = twists[Math.floor(Math.random()*twists.length)];
+
+  return `${o} someone with ${mood} mood, ${aesthetic} aesthetic, and ${energy} energy. ${t} ${w}`;
 }
 
-document.querySelectorAll("[data-tilt]").forEach(attachTilt);
+document.getElementById("oracleBtn").addEventListener("click", () => {
+  const mood = clean(document.getElementById("mood").value) || "velvet static";
+  const aesthetic = clean(document.getElementById("aesthetic").value) || "liquid chrome";
+  const energy = clean(document.getElementById("energy").value) || "slow burn";
+
+  oracleOut.textContent = oracleSentence(mood, aesthetic, energy);
+});
