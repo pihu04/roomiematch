@@ -80,3 +80,19 @@ document.getElementById("oracleBtn").addEventListener("click", () => {
   oracleOut.textContent = oracleSentence(mood, aesthetic, energy);
 });
 
+// Function to close the pop-up
+function closeInstantPopup() {
+    document.getElementById('instantPopup').style.display = 'none';
+}
+
+// Handle the "Claim My Access" form submission
+document.getElementById('popupClaimForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input').value;
+    
+    // Nudge the user with a success message
+    alert("Vibe Checked! " + email + " has been reserved for Lifetime Premium Access.");
+    
+    // Close the pop-up after claiming
+    closeInstantPopup();
+});
