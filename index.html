@@ -3,26 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoomieMatch | The Elite Campus Vibe</title>
+    <title>RoomieMatch | Elite Campus Living</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --coral: #FF7F50;
             --soft-blue: #A2D2FF;
             --onyx: #050505;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.07);
-        }
-
-        /* High-End Noise Texture Overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 999;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
@@ -33,25 +22,16 @@
             overflow-x: hidden;
         }
 
-        /* Custom Cursor */
-        #cursor-follower {
-            width: 40px; height: 40px;
-            border: 1px solid var(--soft-blue);
-            border-radius: 50%;
+        /* Ambient Glows */
+        .glow {
             position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            transition: transform 0.15s ease-out;
-            display: flex; align-items: center; justify-content: center;
-        }
-        #cursor-follower::after {
-            content: "";
-            width: 4px; height: 4px;
-            background: var(--coral);
-            border-radius: 50%;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(255, 127, 80, 0.1) 0%, transparent 70%);
+            top: -10vw; right: -10vw;
+            z-index: -1;
         }
 
-        /* Nav */
+        /* Chic Navigation */
         nav {
             padding: 30px 6%;
             display: flex;
@@ -59,6 +39,7 @@
             align-items: center;
             backdrop-filter: blur(20px);
             position: fixed; top: 0; width: 88%; z-index: 100;
+            border-bottom: 1px solid var(--border);
         }
 
         .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -2px; }
@@ -84,137 +65,143 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Bento Grid: Elite Style */
-        .bento {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(2, 400px);
-            gap: 20px;
-            padding: 0 6% 100px;
+        .subtitle { max-width: 500px; color: #888; font-size: 1.2rem; margin-top: 30px; }
+
+        /* Pop-Up Modal (Bougie Glass) */
+        .elite-popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
         }
 
-        .card {
+        .elite-popup-content {
             background: var(--glass);
             border: 1px solid var(--border);
+            padding: 60px 40px;
             border-radius: 40px;
-            padding: 40px;
-            overflow: hidden;
-            position: relative;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 0 100px rgba(255, 127, 80, 0.15);
         }
 
-        .card:hover { border-color: var(--soft-blue); transform: translateY(-10px); }
+        .popup-badge {
+            background: var(--coral);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            display: inline-block;
+        }
 
-        .card.main { grid-column: span 3; grid-row: span 2; background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80') center/cover; }
-        .card.accent { grid-column: span 3; background: var(--soft-blue); color: #000; }
-        .card.small { grid-column: span 3; }
+        .popup-input {
+            width: 100%;
+            padding: 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            color: white;
+            margin: 20px 0 15px;
+            box-sizing: border-box;
+            outline: none;
+            font-family: inherit;
+        }
 
-        /* Button: Magnetic Feel */
-        .btn-elite {
-            padding: 25px 60px;
+        .popup-submit {
+            width: 100%;
+            padding: 18px;
             background: white;
             color: black;
-            border-radius: 100px;
+            border: none;
+            border-radius: 15px;
             font-weight: 800;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 50px;
-            font-size: 1.1rem;
-            transition: 0.3s;
+            cursor: pointer;
+            transition: 0.3s ease;
         }
 
-        .btn-elite:hover { background: var(--coral); color: white; transform: scale(1.05); }
+        .popup-submit:hover {
+            background: var(--coral);
+            color: white;
+            transform: translateY(-2px);
+        }
 
+        .popup-close {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 0.8rem;
+            margin-top: 25px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Custom Cursor */
+        #cursor-follower {
+            width: 40px; height: 40px;
+            border: 1px solid var(--soft-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease-out;
+        }
     </style>
 </head>
 <body>
-<div id="popupOverlay" class="popup-overlay">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">&times;</span>
-        <h2 style="font-family: 'Syne'; margin-top:0;">CLAIM ELITE STATUS 💎</h2>
-        <p style="color: #aaa; font-size: 0.9rem;">Join 1,200+ students. Get <strong>Lifetime Premium</strong> and a <strong>Verified Badge</strong> for free by joining the waitlist now.</p>
-        <form id="popupForm">
-            <input type="email" placeholder="University Email" required style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; box-sizing: border-box;">
-            <button type="submit" class="claim-btn">CLAIM MY ACCESS</button>
-        </form>
-    </div>
-</div>
+
     <div id="cursor-follower"></div>
+    <div class="glow"></div>
 
     <nav>
         <div class="logo">ROOMIE<span>MATCH.</span></div>
         <div style="font-size: 0.7rem; letter-spacing: 4px; color: var(--soft-blue);">PRE-LAUNCH ACCESS</div>
     </nav>
-<div id="instantPopup" class="elite-popup-overlay">
-    <div class="elite-popup-content">
-        <div class="popup-badge">LIMITED PRE-LAUNCH OFFER</div>
-        <h2 style="font-family: 'Syne'; font-size: 2.2rem; margin: 20px 0 10px;">CLAIM ELITE STATUS 💎</h2>
-        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-bottom: 25px;">
-            Be one of the first 500 students to join the waitlist and receive <strong>Lifetime Premium Access</strong> + a <strong>Verified Badge</strong> ($4.99 value) for free at launch.
-        </p>
-        <form id="popupClaimForm">
-            <input type="email" placeholder="YOUR UNIVERSITY EMAIL" required class="popup-input">
-            <button type="submit" class="popup-submit">CLAIM MY ACCESS</button>
-        </form>
-        <p style="font-size: 0.75rem; color: #555; margin-top: 15px;">Targeting University Students (18–24) | Safe & Secure</p>
-        <button class="popup-close" onclick="closeInstantPopup()">Maybe later, I'll pay full price</button>
+
+    <div id="instantPopup" class="elite-popup-overlay">
+        <div class="elite-popup-content">
+            <div class="popup-badge">LIMITED PRE-LAUNCH OFFER</div>
+            <h2 style="font-family: 'Syne'; font-size: 2.2rem; margin: 20px 0 10px;">VIBE CHECK. 💎</h2>
+            <p style="color: rgba(255,255,255,0.6); font-size: 0.95rem; line-height: 1.5;">
+                Be one of the first 500 students to join the waitlist and receive <strong>Lifetime Premium Access</strong> + a <strong>Verified Badge</strong> ($4.99 value) for free at launch.
+            </p>
+            <form id="popupClaimForm">
+                <input type="email" placeholder="YOUR UNIVERSITY EMAIL" required class="popup-input">
+                <button type="submit" class="popup-submit">RESERVE MY STATUS</button>
+            </form>
+            <button class="popup-close" onclick="closeInstantPopup()">I'll browse first</button>
+        </div>
     </div>
-</div>
+
     <header>
         <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px;">EST. 2026</p>
-        <h1 class="parallax" data-speed="2">BEYOND<br>LIVING.</h1>
-        <p style="max-width: 500px; color: #666; font-size: 1.2rem; margin-top: 30px;">The elite roommate network designed for the aesthetic-driven student.</p>
-        <div><a href="#join" class="btn-elite">RESERVE MY SPOT</a></div>
+        <h1>BEYOND<br>LIVING.</h1>
+        <p class="subtitle">The elite roommate network designed for the aesthetic-driven student. Stop settling for mid-tier vibes.</p>
     </header>
 
-    <div class="bento">
-        <div class="card main parallax" data-speed="1"></div>
-        <div class="card accent">
-            <h2 style="font-family: 'Syne'; font-size: 3rem; margin: 0;">01. THE ALGO.</h2>
-            <p>Matching your sleep, study, and style vibes with clinical precision.</p>
-        </div>
-        <div class="card small">
-            <h2 style="font-family: 'Syne'; color: var(--coral);">VERIFIED.</h2>
-            <p style="color: #666;">Exclusively for university domains. No outsiders.</p>
-        </div>
-    </div>
-
-    <footer id="join" style="padding: 150px 8%; text-align: center;">
-        <h2 style="font-family: 'Syne'; font-size: 5rem;">JOIN THE<br>WAITLIST.</h2>
-        <form style="margin-top: 50px;">
-            <input type="email" placeholder="UNIVERSITY EMAIL" style="background: transparent; border: none; border-bottom: 2px solid var(--border); padding: 20px; color: white; width: 400px; font-size: 1.5rem; outline: none; text-align: center;">
-            <br>
-            <button type="submit" class="btn-elite">I'M READY</button>
-        </form>
-    </footer>
-
     <script>
-        // Custom Cursor Follower
+        // Custom Cursor
         const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
             follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
         });
 
-        // Parallax Effect
-        window.addEventListener('scroll', () => {
-            const parallaxEls = document.querySelectorAll('.parallax');
-            parallaxEls.forEach(el => {
-                const speed = el.getAttribute('data-speed');
-                const yPos = -(window.scrollY * speed / 10);
-                el.style.transform = `translateY(${yPos}px)`;
-            });
-        });
+        // Close Pop-up Logic
+        function closeInstantPopup() {
+            document.getElementById('instantPopup').style.display = 'none';
+        }
 
-        // Smooth Button Interaction
-        document.querySelector('.btn-elite').addEventListener('mouseover', () => {
-            follower.style.width = '80px';
-            follower.style.height = '80px';
-            follower.style.borderColor = 'white';
-        });
-        document.querySelector('.btn-elite').addEventListener('mouseleave', () => {
-            follower.style.width = '40px';
-            follower.style.height = '40px';
-            follower.style.borderColor = 'var(--soft-blue)';
+        // Form Submission
+        document.getElementById('popupClaimForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert("Elite Access Reserved for " + email + "! Keep an eye on your uni inbox.");
+            closeInstantPopup();
         });
     </script>
 </body>
