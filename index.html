@@ -128,7 +128,17 @@
     </style>
 </head>
 <body>
-
+<div id="popupOverlay" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 style="font-family: 'Syne'; margin-top:0;">CLAIM ELITE STATUS 💎</h2>
+        <p style="color: #aaa; font-size: 0.9rem;">Join 1,200+ students. Get <strong>Lifetime Premium</strong> and a <strong>Verified Badge</strong> for free by joining the waitlist now.</p>
+        <form id="popupForm">
+            <input type="email" placeholder="University Email" required style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; box-sizing: border-box;">
+            <button type="submit" class="claim-btn">CLAIM MY ACCESS</button>
+        </form>
+    </div>
+</div>
     <div id="cursor-follower"></div>
 
     <nav>
