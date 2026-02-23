@@ -1,3 +1,19 @@
+// Function to close the pop-up manually
+function closeInstantPopup() {
+    document.getElementById('instantPopup').style.display = 'none';
+}
+
+// Handle the "Claim My Access" action
+document.getElementById('popupClaimForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input').value;
+    
+    // Immediate feedback for the student
+    alert("Elite Status Claimed! " + email + " has been reserved for Lifetime Premium Access.");
+    
+    // Close the pop-up
+    closeInstantPopup();
+});
 // Trigger pop-up after 3 seconds
 window.addEventListener('load', () => {
     setTimeout(() => {
