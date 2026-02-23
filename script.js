@@ -21,3 +21,20 @@ document.getElementById('claimForm').addEventListener('submit', (e) => {
     alert("Vibe Checked! Your elite status is reserved. Check your uni inbox soon!");
     closePopup();
 });
+// Function for Scroll Reveal Animation
+const revealOnScroll = () => {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(window_el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = window_el.getBoundingClientRect().top;
+        const revealPoint = 150;
+
+        if (revealTop < windowHeight - revealPoint) {
+            window_el.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+// Initial check to show items already in view
+window.addEventListener('load', revealOnScroll);
