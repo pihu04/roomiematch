@@ -1,4 +1,19 @@
-// Year
+// Trigger pop-up after 3 seconds
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('popupOverlay').style.display = 'flex';
+    }, 3000);
+});
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+}
+
+document.getElementById('popupForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert("Elite Access Reserved! We've sent a confirmation to your university email.");
+    closePopup();
+});// Year
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // Cursor aura follow
@@ -64,3 +79,4 @@ document.getElementById("oracleBtn").addEventListener("click", () => {
 
   oracleOut.textContent = oracleSentence(mood, aesthetic, energy);
 });
+
