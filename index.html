@@ -1,237 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Romi Match</title>
-  <meta name="description" content="Romi Match — surreal social media project." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomieMatch | The Elite Campus Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #FF7F50;
+            --soft-blue: #A2D2FF;
+            --deep-black: #08090a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+        body {
+            background-color: var(--deep-black);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            cursor: default;
+        }
 
-  <link rel="stylesheet" href="styles.css" />
+        /* Ambient Background Glow */
+        .glow {
+            position: fixed;
+            width: 40vw; height: 40vw;
+            background: radial-gradient(circle, rgba(255, 127, 80, 0.1) 0%, transparent 70%);
+            top: -10vw; right: -10vw;
+            z-index: -1;
+        }
+
+        /* Chic Glass Navigation */
+        nav {
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.4rem; letter-spacing: -1px; font-weight: 800; }
+        .logo span { color: var(--coral); }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 5% 60px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 0.85;
+            margin: 0;
+            letter-spacing: -4px;
+            background: linear-gradient(180deg, #fff 30%, var(--soft-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p { color: #888; font-size: 1.2rem; margin-top: 20px; max-width: 600px; margin-inline: auto; }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 20px;
+            padding: 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .bento-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bento-item:hover { border-color: var(--soft-blue); transform: scale(1.02); }
+
+        .large { grid-column: span 2; grid-row: span 2; background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80'); background-size: cover; }
+        .tall { grid-row: span 2; }
+        
+        .btn-elite {
+            background: white;
+            color: black;
+            padding: 18px 35px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .btn-elite:hover { background: var(--coral); color: white; box-shadow: 0 0 30px rgba(255,127,80,0.4); }
+
+        /* Social / Footer */
+        .social-footer {
+            padding: 100px 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 100px;
+        }
+
+        .links a { color: #888; text-decoration: none; margin: 0 20px; font-weight: 600; font-size: 0.9rem; }
+        .links a:hover { color: var(--coral); }
+    </style>
 </head>
 <body>
-  <!-- Cursor aura -->
-  <div class="cursorAura" aria-hidden="true"></div>
 
-  <!-- Background -->
-  <div class="stage" aria-hidden="true">
-    <div class="liquid"></div>
-    <div class="halo"></div>
-    <div class="noise"></div>
-  </div>
+<div class="glow"></div>
 
-  <header class="topbar">
-    <a class="mark" href="#top" aria-label="Romi Match home">
-      <span class="sig">ROMI</span><span class="sig ghost">MATCH</span>
-    </a>
+<nav>
+    <div class="logo">ROOMIE<span>MATCH.</span></div>
+    <div class="links">
+        <a href="#">INSTAGRAM</a>
+        <a href="#">TIKTOK</a>
+        <a href="#">LINKEDIN</a>
+    </div>
+</nav>
 
-    <nav class="nav">
-      <a href="#world">World</a>
-      <a href="#signals">Signals</a>
-      <a href="#oracle">Oracle</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<section class="hero">
+    <h1>VIBE<br>CHECK.</h1>
+    <p>The high-end roommate matching platform for the modern campus aesthetic. Stop settling for mid-tier living.</p>
+    <a href="#signup" class="btn-elite">JOIN THE WAITLIST</a>
+</section>
 
-    <a class="pill" href="#oracle">Try Oracle</a>
-  </header>
-
-  <main id="top" class="wrap">
-    <section class="hero">
-      <div class="heroText">
-        <p class="kicker">
-          <span class="blink"></span>
-          surreal social media / identity remix / vibe matching
-        </p>
-
-        <h1 class="headline">
-          Romi Match
-          <span class="subhead" data-glitch="find your unreal match">find your unreal match</span>
-        </h1>
-
-        <p class="lede">
-          Romi Match is a social platform concept where profiles behave like art.
-          You don’t “follow” — you drift, collide, and match through signals: mood, aesthetic, and energy.
-        </p>
-
-        <div class="ctaRow">
-          <a class="btn primary" href="#world">Enter the world</a>
-          <button class="btn ghost" id="spawnPrompt" type="button">Generate a vibe</button>
+<div class="bento-grid">
+    <div class="bento-item large">
+        <div style="position:absolute; bottom:30px; left:30px; background: rgba(0,0,0,0.6); backdrop-filter:blur(10px); padding:15px 25px; border-radius:20px;">
+            <h3 style="margin:0">Compatibility First.</h3>
         </div>
+    </div>
+    <div class="bento-item">
+        <h3 style="color:var(--coral)">01. Quiz</h3>
+        <p style="color:#888">Deep-dive into your lifestyle aesthetic.</p>
+    </div>
+    <div class="bento-item tall" style="background: linear-gradient(to bottom, var(--coral), transparent);">
+        <h3>Secure Student Network</h3>
+        <p>Verified university emails only. No strangers, just students.</p>
+    </div>
+    <div class="bento-item">
+        <h3 style="color:var(--soft-blue)">02. Match</h3>
+        <p style="color:#888">Connect with people who share your frequency.</p>
+    </div>
+</div>
 
-        <div class="prompt" id="promptBox" role="status" aria-live="polite">
-          <span class="promptLabel">MATCH ORACLE</span>
-          <span class="promptText" id="promptText">Click “Generate a vibe” to get a surreal match prompt.</span>
-        </div>
-      </div>
+<footer class="social-footer" id="signup">
+    <h2 style="font-family:'Syne'; font-size: 3rem; margin-bottom: 40px;">Ready for a better space?</h2>
+    <form>
+        <input type="email" placeholder="Enter Uni Email" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 20px; border-radius: 15px; color: white; width: 300px; outline: none;">
+        <button type="submit" class="btn-elite" style="border:none; cursor:pointer; margin-left: 15px; margin-top:0;">I'M IN</button>
+    </form>
+    <p style="margin-top: 40px; color: #444;">&copy; 2026 RoomieMatch Campus. All rights reserved.</p>
+</footer>
 
-      <div class="heroPanel" aria-label="Romi Match interface preview">
-        <div class="panelTop">
-          <span></span><span></span><span></span>
-          <div class="panelTitle">ROMI / SIGNAL FEED</div>
-        </div>
-
-        <div class="panelBody">
-          <div class="signal">
-            <div class="sigAvatar a1"></div>
-            <div class="sigBody">
-              <div class="sigLine l1"></div>
-              <div class="sigLine l2"></div>
-              <div class="sigTags">
-                <span>#lunar-soft</span><span>#chrome-dream</span><span>#warm-glitch</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="signal">
-            <div class="sigAvatar a2"></div>
-            <div class="sigBody">
-              <div class="sigLine l1"></div>
-              <div class="sigLine l2"></div>
-              <div class="sigTags">
-                <span>#velvet-noise</span><span>#dusk-neon</span><span>#slow-burn</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="meter">
-            <div class="meterLabel">compatibility field</div>
-            <div class="meterBar"><i></i></div>
-          </div>
-
-          <div class="panelNote">
-            “Match the signal, not the résumé.”
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="world" class="section">
-      <div class="sectionHead">
-        <h2>World</h2>
-        <p>Romi Match isn’t a feed. It’s a reality filter.</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Identity as a shifting mask</h3>
-          <p>Profiles can morph between modes — soft, sharp, surreal — without losing the human underneath.</p>
-          <div class="meta">mode / layer / remix</div>
-        </article>
-        <article class="card">
-          <h3>Signals, not stats</h3>
-          <p>Instead of follower counts, your presence is made of signals: mood trails, color gravity, micro-gestures.</p>
-          <div class="meta">mood / aura / gravity</div>
-        </article>
-        <article class="card">
-          <h3>Collisions become stories</h3>
-          <p>When you match, the platform generates a tiny narrative prompt — turning interaction into art.</p>
-          <div class="meta">prompt / loop / myth</div>
-        </article>
-      </div>
-    </section>
-
-    <section id="signals" class="section">
-      <div class="sectionHead">
-        <h2>Signals</h2>
-        <p>Three inputs. Infinite outcomes.</p>
-      </div>
-
-      <div class="signals">
-        <div class="sigCard">
-          <div class="sigBig">01</div>
-          <h3>Mood</h3>
-          <p>Soft chaos, calm voltage, heartbreak neon — the emotional weather you carry.</p>
-        </div>
-        <div class="sigCard">
-          <div class="sigBig">02</div>
-          <h3>Aesthetic</h3>
-          <p>Textures, palettes, patterns — your visual language that speaks before words.</p>
-        </div>
-        <div class="sigCard">
-          <div class="sigBig">03</div>
-          <h3>Energy</h3>
-          <p>Tempo, intensity, silence — how you move through other people’s space.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="oracle" class="section">
-      <div class="sectionHead">
-        <h2>Match Oracle</h2>
-        <p>A surreal generator you can demo on the site so it doesn’t feel like a static poster.</p>
-      </div>
-
-      <div class="oracle">
-        <div class="oracleCard">
-          <div class="oracleTop">
-            <span>ROMI MATCH ORACLE</span>
-            <span class="oracleDot"></span>
-          </div>
-
-          <div class="oracleBody">
-            <label class="field">
-              <span>Your mood (1–3 words)</span>
-              <input id="mood" placeholder="e.g., velvet static" />
-            </label>
-
-            <label class="field">
-              <span>Your aesthetic</span>
-              <input id="aesthetic" placeholder="e.g., liquid chrome" />
-            </label>
-
-            <label class="field">
-              <span>Your energy</span>
-              <input id="energy" placeholder="e.g., slow burn" />
-            </label>
-
-            <button class="btn primary wide" id="oracleBtn" type="button">Generate match prompt</button>
-
-            <div class="oracleOut" id="oracleOut" role="status" aria-live="polite">
-              Fill the fields, then generate.
-            </div>
-          </div>
-        </div>
-
-        <div class="oracleSide">
-          <h3>How to use this</h3>
-          <ul>
-            <li>Record a screen video of the oracle generating prompts.</li>
-            <li>Replace the text with your project research + features.</li>
-            <li>Add screenshots later — the layout is ready for it.</li>
-          </ul>
-
-          <div class="tiny">
-            Hosting on GitHub Pages? You’re good. This is all static.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="sectionHead">
-        <h2>Contact</h2>
-        <p>Swap these links with your real ones.</p>
-      </div>
-
-      <div class="contact">
-        <a class="link" href="#">GitHub Repo <span>↗</span></a>
-        <a class="link" href="#">Instagram <span>↗</span></a>
-        <a class="link" href="#">TikTok <span>↗</span></a>
-        <a class="link" href="#">Project Doc <span>↗</span></a>
-      </div>
-    </section>
-
-    <footer class="foot">
-      <span>© <span id="year"></span> Romi Match</span>
-      <a href="#top">back to top ↑</a>
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
