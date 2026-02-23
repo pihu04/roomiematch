@@ -5,220 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomieMatch | The Elite Campus Vibe</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --coral: #FF7F50;
             --soft-blue: #A2D2FF;
-            --deep-black: #08090a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
+            --onyx: #050505;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.07);
         }
 
-        /* Base Styles */
+        /* High-End Noise Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
+        }
+
         body {
-            background-color: var(--deep-black);
+            background-color: var(--onyx);
             color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             overflow-x: hidden;
-            cursor: none; /* We will add a custom JS cursor */
         }
 
-        /* Custom JS Cursor CSS */
-        #cursor {
-            width: 20px; height: 20px;
-            background: var(--coral);
+        /* Custom Cursor */
+        #cursor-follower {
+            width: 40px; height: 40px;
+            border: 1px solid var(--soft-blue);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
+            z-index: 10000;
+            transition: transform 0.15s ease-out;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #cursor-follower::after {
+            content: "";
+            width: 4px; height: 4px;
+            background: var(--coral);
+            border-radius: 50%;
         }
 
-        /* Ambient Glows */
-        .glow {
-            position: fixed;
-            width: 50vw; height: 50vw;
-            background: radial-gradient(circle, rgba(255, 127, 80, 0.08) 0%, transparent 70%);
-            top: -10vw; right: -10vw;
-            z-index: -1;
-            animation: pulse 8s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); opacity: 0.5; }
-            to { transform: scale(1.2); opacity: 0.8; }
-        }
-
-        /* Glass Nav */
+        /* Nav */
         nav {
-            padding: 25px 5%;
+            padding: 30px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+            position: fixed; top: 0; width: 88%; z-index: 100;
         }
 
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--soft-blue); }
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -2px; }
         .logo span { color: var(--coral); }
 
-        /* Hero */
-        .hero { padding: 120px 5% 80px; text-align: center; }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8%;
+        }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(3.5rem, 12vw, 8rem);
+            font-size: clamp(4rem, 15vw, 10rem);
             line-height: 0.8;
-            letter-spacing: -5px;
+            letter-spacing: -6px;
             margin: 0;
-            background: linear-gradient(to bottom, #fff, #666);
+            background: linear-gradient(180deg, #fff 0%, #333 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* Bento Grid */
-        .bento-grid {
+        /* Bento Grid: Elite Style */
+        .bento {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 350px);
-            gap: 25px;
-            padding: 0 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 400px);
+            gap: 20px;
+            padding: 0 6% 100px;
         }
 
-        .bento-item {
-            background: var(--card-bg);
+        .card {
+            background: var(--glass);
             border: 1px solid var(--border);
             border-radius: 40px;
             padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .bento-item:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: var(--soft-blue);
-        }
+        .card:hover { border-color: var(--soft-blue); transform: translateY(-10px); }
 
-        .large-image { 
-            grid-column: span 2; grid-row: span 2; 
-            background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80') center/cover;
-        }
+        .card.main { grid-column: span 3; grid-row: span 2; background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        .card.accent { grid-column: span 3; background: var(--soft-blue); color: #000; }
+        .card.small { grid-column: span 3; }
 
-        /* Form */
-        .waitlist-section { padding: 100px 5%; text-align: center; }
-        
-        .btn-chic {
+        /* Button: Magnetic Feel */
+        .btn-elite {
+            padding: 25px 60px;
             background: white;
             color: black;
-            padding: 20px 50px;
             border-radius: 100px;
-            text-decoration: none;
             font-weight: 800;
+            text-decoration: none;
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 50px;
+            font-size: 1.1rem;
             transition: 0.3s;
-            border: none;
-            cursor: pointer;
         }
 
-        .btn-chic:hover {
-            background: var(--coral);
-            color: white;
-            box-shadow: 0 10px 40px rgba(255, 127, 80, 0.5);
-        }
+        .btn-elite:hover { background: var(--coral); color: white; transform: scale(1.05); }
 
-        input {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 100px;
-            color: white;
-            width: 300px;
-            text-align: center;
-            font-size: 1rem;
-            outline: none;
-        }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <div class="glow"></div>
+    <div id="cursor-follower"></div>
 
     <nav>
         <div class="logo">ROOMIE<span>MATCH.</span></div>
-        <div style="font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;">UNIVERSITY ELITE '26</div>
+        <div style="font-size: 0.7rem; letter-spacing: 4px; color: var(--soft-blue);">PRE-LAUNCH ACCESS</div>
     </nav>
 
-    <section class="hero">
-        <h1 class="reveal">CHIC.<br>CAMPUS.</h1>
-        <p class="reveal" style="color: #888; margin-top: 30px; font-size: 1.2rem;">Find your aesthetic. Match your energy.</p>
-        <a href="#join" class="btn-chic reveal">RESERVE ACCESS</a>
-    </section>
+    <header>
+        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px;">EST. 2026</p>
+        <h1 class="parallax" data-speed="2">BEYOND<br>LIVING.</h1>
+        <p style="max-width: 500px; color: #666; font-size: 1.2rem; margin-top: 30px;">The elite roommate network designed for the aesthetic-driven student.</p>
+        <div><a href="#join" class="btn-elite">RESERVE MY SPOT</a></div>
+    </header>
 
-    <div class="bento-grid">
-        <div class="bento-item large-image reveal"></div>
-        <div class="bento-item reveal" style="border-bottom: 4px solid var(--coral);">
-            <h2 style="font-family: 'Syne'; margin:0;">01. THE QUIZ</h2>
-            <p style="color:#666">Define your lifestyle vibe in 60 seconds.</p>
+    <div class="bento">
+        <div class="card main parallax" data-speed="1"></div>
+        <div class="card accent">
+            <h2 style="font-family: 'Syne'; font-size: 3rem; margin: 0;">01. THE ALGO.</h2>
+            <p>Matching your sleep, study, and style vibes with clinical precision.</p>
         </div>
-        <div class="bento-item reveal" style="background: var(--soft-blue); color: black;">
-            <h2 style="font-family: 'Syne'; margin:0;">02. THE MATCH</h2>
-            <p>Connect with verified students at your uni.</p>
-        </div>
-        <div class="bento-item reveal" style="grid-column: span 2;">
-            <h2 style="font-family: 'Syne'; margin:0;">AUTHENTICITY.</h2>
-            <p style="color:#666">Because roommate horror stories are so 2024.</p>
+        <div class="card small">
+            <h2 style="font-family: 'Syne'; color: var(--coral);">VERIFIED.</h2>
+            <p style="color: #666;">Exclusively for university domains. No outsiders.</p>
         </div>
     </div>
 
-    <section class="waitlist-section reveal" id="join">
-        <h2 style="font-family: 'Syne'; font-size: 4rem; margin-bottom: 10px;">DON'T BE LATE.</h2>
-        <p style="color: #666; margin-bottom: 40px;">Join 1,200+ students already on the waitlist.</p>
-        <form id="waitlistForm">
-            <input type="email" placeholder="YOUR UNI EMAIL" required>
-            <button type="submit" class="btn-chic">I'M IN</button>
+    <footer id="join" style="padding: 150px 8%; text-align: center;">
+        <h2 style="font-family: 'Syne'; font-size: 5rem;">JOIN THE<br>WAITLIST.</h2>
+        <form style="margin-top: 50px;">
+            <input type="email" placeholder="UNIVERSITY EMAIL" style="background: transparent; border: none; border-bottom: 2px solid var(--border); padding: 20px; color: white; width: 400px; font-size: 1.5rem; outline: none; text-align: center;">
+            <br>
+            <button type="submit" class="btn-elite">I'M READY</button>
         </form>
-    </section>
+    </footer>
 
     <script>
-        // 1. Custom Cursor Movement
-        const cursor = document.getElementById('cursor');
+        // Custom Cursor Follower
+        const follower = document.getElementById('cursor-follower');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
         });
 
-        // 2. Scroll Reveal Animation
-        const reveals = document.querySelectorAll('.reveal');
-        const scrollHandler = () => {
-            reveals.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.9) {
-                    el.classList.add('active');
-                }
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const parallaxEls = document.querySelectorAll('.parallax');
+            parallaxEls.forEach(el => {
+                const speed = el.getAttribute('data-speed');
+                const yPos = -(window.scrollY * speed / 10);
+                el.style.transform = `translateY(${yPos}px)`;
             });
-        };
-        window.addEventListener('scroll', scrollHandler);
-        window.addEventListener('load', scrollHandler); // Initial check
+        });
 
-        // 3. Form Interaction
-        document.getElementById('waitlistForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Welcome to the Elite. We will contact your university email soon!');
+        // Smooth Button Interaction
+        document.querySelector('.btn-elite').addEventListener('mouseover', () => {
+            follower.style.width = '80px';
+            follower.style.height = '80px';
+            follower.style.borderColor = 'white';
+        });
+        document.querySelector('.btn-elite').addEventListener('mouseleave', () => {
+            follower.style.width = '40px';
+            follower.style.height = '40px';
+            follower.style.borderColor = 'var(--soft-blue)';
         });
     </script>
-
 </body>
 </html>
