@@ -124,94 +124,88 @@ header {
     opacity: 0.8;
     margin-top: 5px;
 }
-/* --- SECTION: GLASS STATS & BRAND MESSAGE --- */
+/* --- THE SOLUTION SECTION STYLING --- */
 
-.stats-glass-container {
+.solution-container {
     padding: 100px 8%;
     display: flex;
-    flex-direction: column; /* Stacks the grid and the header below it */
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    text-align: center;
 }
 
+/* THE SOLUTION BADGE */
+.solution-badge {
+    background: rgba(0, 255, 255, 0.1); /* Minty sheer from your screenshot */
+    color: #5eead4;
+    padding: 8px 24px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+/* 2x2 GLASS GRID */
 .stats-glass-grid {
     display: grid;
-    /* Forces 2 columns: Column 1 (Left: 94% & 10k+) | Column 2 (Right: 50+ & 4.9★) */
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     width: 100%;
     max-width: 1100px;
-    margin-bottom: 70px; /* Distance between stats and the "Why it Works" header */
+    margin-bottom: 70px;
 }
 
 .stat-glass-pill {
-    /* GLASSMORPHISM DESIGN */
-    background: rgba(0, 0, 0, 0.45) !important; /* Dark sheer translucent background */
-    backdrop-filter: blur(15px); /* Modern frosted glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.25); /* Thin 1px white border */
-    border-radius: 500px; /* High-end oval pill shape */
-    
-    padding: 45px 35px;
-    text-align: center;
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 500px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.stat-glass-pill:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(0, 0, 0, 0.55) !important;
 }
 
 .stat-num-bold {
     font-family: 'Syne', sans-serif;
-    font-size: 3.2rem;
+    font-size: 3rem;
     font-weight: 800;
-    color: #ffffff !important; /* Bold White Numbers */
-    margin: 0;
-    letter-spacing: -1px;
+    color: #ffffff;
+    margin-bottom: 5px;
 }
 
 .stat-label-caps {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase; /* Uppercase Sans-Serif */
-    letter-spacing: 1.5px;
-    color: #ffffff !important;
-    opacity: 0.85;
-    margin-top: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: capitalize;
 }
 
-/* BRAND MESSAGE BELOW STATS */
-.brand-message-block {
-    max-width: 850px;
-    text-align: center;
-    animation: fadeInUp 1s ease forwards;
-}
-
+/* HEADLINE & DESCRIPTION */
 .brand-h2 {
     font-family: 'Syne', sans-serif;
-    color: #ffffff !important; /* Pure White Header */
-    font-size: 2.8rem;
+    color: #ffffff;
+    font-size: 3.5rem;
     font-weight: 800;
-    margin-bottom: 20px;
-    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+
+.brand-h2 .highlight {
+    color: var(--coral); /* Your brand orange */
 }
 
 .brand-p {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: rgba(255, 255, 255, 0.75); /* Sheer white description text */
-    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.25rem;
+    max-width: 800px;
     line-height: 1.6;
-    font-weight: 500;
 }
 
-/* MOBILE FIX: Stacks the grid for readability on phones */
+/* MOBILE FIX */
 @media (max-width: 768px) {
     .stats-glass-grid { grid-template-columns: 1fr; }
-    .brand-h2 { font-size: 2rem; }
-    .brand-p { font-size: 1rem; }
+    .brand-h2 { font-size: 2.2rem; }
 }
