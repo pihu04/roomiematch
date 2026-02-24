@@ -1,74 +1,123 @@
+/* --- 1. CORE BRAND COLORS & FONTS --- */
 :root {
-    --coral: #FF8C00; /* Your brand orange */
+    --coral: #FF8C00; /* Your Brand Orange */
     --onyx: #050505;
+    --glass: rgba(0, 0, 0, 0.45);
+    --border-light: rgba(255, 255, 255, 0.15);
 }
 
-/* BACKGROUND & HERO */
-.bg-overlay {
-    position: fixed; inset: 0; z-index: -1;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), url('your-image.jpg') center/cover;
-}
-
-header {
-    height: 100vh; display: flex; flex-direction: column; 
-    justify-content: center; align-items: center; text-align: center;
-}
-
-.hero-title {
-    font-family: 'Syne'; font-size: clamp(3rem, 12vw, 8rem);
-    line-height: 0.9; color: white; margin: 20px 0;
-}
-
-/* MASSIVE CENTERPIECE (100px) */
+/* --- 2. MASSIVE CENTERPIECE (The 94% Pill) --- */
 .mega-center-container {
-    height: 100vh; display: flex; justify-content: center; align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
 }
 
 .mega-pill {
-    background: rgba(0, 0, 0, 0.45) !important;
+    background: var(--glass) !important;
     backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1000px; padding: 60px 100px;
-    display: flex; align-items: center; gap: 40px;
+    border: 1px solid var(--border-light);
+    border-radius: 1000px; /* Perfect oval shape */
+    padding: 60px 100px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
 }
 
 .mega-num {
-    font-family: 'Syne'; font-size: 100px; /* REQUESTED SIZE */
-    font-weight: 800; color: white; line-height: 1;
+    font-family: 'Syne', sans-serif;
+    font-size: 100px; /* HUGE HEADER SIZE */
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -4px;
 }
 
 .mega-label {
-    font-family: 'Plus Jakarta Sans'; font-size: 1.2rem;
-    font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 2px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-/* SHEER BUBBLE STORIES */
-.stories-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+/* --- 3. HORROR STORIES (Sheer Bubbles) --- */
+.problem-section-glass {
+    padding: 100px 8%;
 }
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns for Desktop */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+
 
 .sheer-bubble {
     background: rgba(255, 255, 255, 0.03) !important;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px; padding: 40px; text-align: left;
+    border: 1px solid var(--border-light);
+    border-radius: 40px; /* Bubble-style corners */
+    padding: 40px;
+    text-align: left;
+    transition: 0.4s ease;
 }
 
-.bubble-h3 { font-family: 'Syne'; color: white; font-size: 1.5rem; }
-.highlight { color: var(--coral); }
-
-/* QUIZ MODAL & BUTTONS */
-.quiz-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-    display: none; justify-content: center; align-items: center; z-index: 1000;
+.sheer-bubble:hover {
+    transform: translateY(-10px);
+    border-color: var(--coral);
+    background: rgba(255, 255, 255, 0.06) !important;
 }
 
+.bubble-h3 {
+    font-family: 'Syne', sans-serif;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: var(--coral);
+}
+
+.bubble-p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* --- 4. QUIZ BUTTONS (No Purple) --- */
 .quiz-btn-sheer {
-    width: 100%; padding: 18px; margin-bottom: 12px;
+    width: 100%;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: white !important; border-radius: 100px;
-    font-weight: 700; cursor: pointer; transition: 0.3s;
+    color: #ffffff !important; /* Forced White Text */
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.quiz-btn-sheer:hover { background: white !important; color: black !important; }
+.quiz-btn-sheer:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+/* --- 5. RESPONSIVE FIXES --- */
+@media (max-width: 1024px) {
+    .mega-num { font-size: 75px; }
+    .stories-grid { grid-template-columns: 1fr; } /* Stack bubbles on mobile */
+}
