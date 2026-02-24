@@ -34,16 +34,16 @@
             z-index: -1;
         }
 
-        /* STICKY NAVIGATION */
+        /* FIXED/STICKY NAVIGATION */
         nav {
             padding: 20px 6%;
             display: flex;
             justify-content: center;
-            position: fixed;
+            position: fixed; /* Makes it stay at the top while scrolling */
             top: 0; 
             width: 100%; 
             z-index: 1000;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px); /* Elegant blur as you scroll over content */
             background: rgba(5, 5, 5, 0.5);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -93,39 +93,11 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 80px 8% 40px;
             text-align: center;
-            color: white; /* Updated to white */
         }
 
-        .footer-desc { color: #ccc; max-width: 600px; margin: 20px auto; font-size: 0.9rem; }
+        .footer-desc { color: #888; max-width: 600px; margin: 20px auto; font-size: 0.9rem; }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .footer-section h4 {
-            font-family: 'Syne';
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: var(--coral);
-        }
-
-        .footer-section a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .footer-section a:hover { opacity: 1; color: var(--coral); }
-
+        /* REFINED SOCIAL ICONS */
         .social-icons { display: flex; justify-content: center; gap: 25px; margin: 40px 0; }
         .icon-link {
             color: white;
@@ -138,15 +110,14 @@
             opacity: 0.7;
         }
         .icon-link:hover { opacity: 1; color: var(--coral); }
+        .icon-link span { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
-        .bottom-bar {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            color: #aaa;
+        .footer-links {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 25px;
+            margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
         }
+        .footer-links a { color: #555; text-decoration: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links a:hover { color: white; }
 
         /* POPUP */
         .popup-overlay {
@@ -170,33 +141,14 @@
         <div class="coming-soon-pill">Coming Soon</div>
         <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 10px;">EST. 2026</p>
         <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
-        <p style="color: #ccc; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
+        <p style="color: #666; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
     </header>
 
     <footer>
         <h2 style="font-family: 'Syne'; font-size: 1.8rem; margin-bottom: 10px;">ROOMIEMATCH.</h2>
         <p class="footer-desc">
-            The first lifestyle-driven roommate matching platform built exclusively for students.
+            The first lifestyle-driven roommate matching platform built exclusively for students. We match you based on sleep schedules, social energy, and cleanliness—all within a verified campus network.
         </p>
-
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Home</a>
-                <a href="#">How It Works</a>
-                <a href="#">Take Quiz</a>
-                <a href="#">Pricing</a>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal & Support</h4>
-                <a href="#">About Us</a>
-                <a href="#">Student Stories</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support & FAQ</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
 
         <div class="social-icons">
             <a href="https://www.instagram.com/roomie.matchh/" class="icon-link" target="_blank">
@@ -204,19 +156,22 @@
                 <span>Instagram</span>
             </a>
             <a href="#" class="icon-link">
-                <i data-lucide="music-2"></i>
-                <span>TikTok</span>
+                <i data-lucide="music-2"></i> <span>TikTok</span>
             </a>
             <a href="#" class="icon-link">
-                <i data-lucide="message-circle"></i>
-                <span>WhatsApp Community</span>
+                <i data-lucide="message-circle"></i> <span>WhatsApp</span>
             </a>
         </div>
 
-        <div class="bottom-bar">
-            <p>© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
-            <p style="margin-top: 10px; font-weight: 700; color: white;">Made with ❤️ for students</p>
+        <div class="footer-links">
+            <a href="#">About Us</a>
+            <a href="#">Student Stories</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Support</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
         </div>
+        <p style="color: #222; font-size: 0.6rem; margin-top: 40px;">© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <div id="statusPopup" class="popup-overlay">
@@ -232,8 +187,10 @@
     </div>
 
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
 
+        // 1-MINUTE DELAY POPUP
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const popup = document.getElementById('statusPopup');
