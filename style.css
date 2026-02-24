@@ -68,50 +68,59 @@ header {
     background: rgba(255, 255, 255, 0.15) !important;
     border-color: white !important;
 }
-/* --- STATISTICS SECTION --- */
+/* --- VERTICAL GLASS PILLS --- */
 
-.stats-container {
-    padding: 80px 6%;
+.stats-container-vertical {
+    padding: 60px 8%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns the whole stack to the left */
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 30px;
-    width: 100%;
-    max-width: 1100px;
+.stats-vertical-stack {
+    display: flex;
+    flex-direction: column; /* Aligns pills vertically */
+    gap: 20px; /* Consistent spacing between pills */
+    max-width: 500px;
 }
 
-.stat-pill {
-    background: rgba(255, 255, 255, 0.02); /* Sheer background */
-    backdrop-filter: blur(20px);
+.ui-pill-stat {
+    /* STYLE REQUIREMENTS */
+    background: rgba(0, 0, 0, 0.45) !important; /* Translucent dark background */
+    backdrop-filter: blur(12px); /* Glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Thin light border */
+    border-radius: 500px; /* Fully pill-shaped */
     
-    /* THIN PILL OUTLINE */
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    border-radius: 500px; /* Force oval shape */
-    
-    padding: 60px 40px;
-    text-align: center;
+    padding: 15px 35px;
+    display: flex;
+    align-items: center; /* Keeps number and label on same line */
+    gap: 20px;
+    transition: 0.4s ease;
 }
 
-.stat-number {
+.ui-pill-stat:hover {
+    transform: translateX(10px); /* Slight slide-out effect on hover */
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.stat-num {
     font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #ffffff; /* Bold white */
-    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 800; /* Bold and bigger */
+    color: #ffffff;
 }
 
-.stat-label {
+.stat-txt {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    color: #ffffff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    text-transform: uppercase; /* Bold uppercase sans-serif */
-    letter-spacing: 2px;
-    margin-top: 10px;
+    text-transform: uppercase; /* Smaller uppercase */
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Dimming the background for readability */
+.bg-overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.92)) !important;
 }
 
 /* Mobile Stack */
