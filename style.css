@@ -1,10 +1,7 @@
 :root {
-    --coral: #FF7F50; /* Your Orange/Coral */
-    --soft-blue: #A2D2FF; 
-    --onyx: #050505; /* Black Background */
+    --coral: #FF7F50;
+    --onyx: #050505;
 }
-
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 body {
     background-color: var(--onyx);
@@ -18,15 +15,15 @@ body {
 .bg-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Black gradient over a lifestyle image */
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), 
+    /* Black sheer gradient over a relatable room image */
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
                 url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
     background-size: cover;
     background-position: center;
     z-index: -1;
 }
 
-/* 2. Bold Hero Animation */
+/* 2. Bold Entry Animation */
 .hero-title {
     font-family: 'Syne', sans-serif;
     font-size: clamp(3rem, 12vw, 8rem);
@@ -42,33 +39,23 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* 3. Mobile-First Bento Cards */
-.content-stack {
-    padding: 0 6% 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+/* 3. Pop-up Hidden by Default */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    display: none; /* THIS STOPS IT FROM APPEARING INSTANTLY */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
 }
 
-.bento-card {
+.popup-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px 30px;
-    border-radius: 35px;
-    backdrop-filter: blur(10px);
-    transition: 0.4s ease;
-}
-
-.bento-card h2 { color: var(--coral); font-family: 'Syne'; margin-top: 0; }
-
-/* Desktop View */
-@media (min-width: 1024px) {
-    .content-stack { flex-direction: row; }
-    .bento-card { flex: 1; }
-}
-
-/* 4. Elegant Popup Styling */
-.popup-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-    display: none; justify-content: center; align-items: center; z-index: 10000;
+    padding: 40px;
+    border-radius: 40px;
+    max-width: 400px;
+    text-align: center;
 }
