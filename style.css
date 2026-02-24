@@ -11,72 +11,75 @@ body {
     overflow-x: hidden;
 }
 
-/* 1. The Sheer Background Effect */
-.bg-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    /* Black sheer gradient over a relatable room image */
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
-                url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
-
-/* 2. Bold Entry Animation */
-.hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 12vw, 8rem);
-    line-height: 0.85;
-    letter-spacing: -3px;
-    margin: 0;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* 3. Pop-up Hidden by Default */
-.popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(20px);
-    display: none; /* THIS STOPS IT FROM APPEARING INSTANTLY */
+/* 1. FIX THE HEADER SPACING */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10000;
-}
-
-.popup-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    border-radius: 40px;
-    max-width: 400px;
+    padding-top: 60px; /* Gives space for the sticky logo */
     text-align: center;
 }
-.quiz-btn-hero {
-    margin-top: 30px;
-    display: inline-block;
-    padding: 18px 40px;
-    background-color: var(--coral);
-    color: white;
-    text-decoration: none;
-    font-weight: 800;
-    border-radius: 100px;
-    letter-spacing: 2px;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid transparent;
+
+/* 2. THE BUTTON CONTAINER (Keeps them side-by-side) */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    justify-content: center;
+    animation: fadeInUp 1s ease 1.2s forwards;
+    opacity: 0;
 }
 
-.quiz-btn-hero:hover {
-    transform: scale(1.05);
-    background-color: transparent;
-    border-color: var(--coral);
-    color: var(--coral);
-    box-shadow: 0 10px 30px rgba(255, 127, 80, 0.3);
+/* 3. TAKE QUIZ - Primary Action (Forces White/Coral) */
+.btn-primary {
+    background-color: var(--coral) !important;
+    color: white !important; /* Kills the blue font */
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none !important;
+    font-weight: 800;
+    font-size: 0.8rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border: 2px solid var(--coral) !important;
+}
+
+/* 4. HOW IT WORKS - Secondary Action (White Border) */
+.btn-secondary {
+    background-color: transparent !important;
+    color: white !important;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none !important;
+    font-weight: 700;
+    font-size: 0.8rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 1px;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    transition: 0.3s;
+}
+
+/* 5. HOVER EFFECTS */
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 127, 80, 0.4);
+    background-color: white !important;
+    color: var(--coral) !important;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: white !important;
+}
+
+/* MOBILE FIX: Stacks buttons vertically on small screens */
+@media (max-width: 480px) {
+    .hero-btns { 
+        flex-direction: column; 
+        width: 80%; 
+        gap: 12px;
+    }
 }
