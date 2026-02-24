@@ -59,3 +59,24 @@ body {
     max-width: 400px;
     text-align: center;
 }
+.quiz-btn-hero {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: var(--coral);
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    border-radius: 100px;
+    letter-spacing: 2px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+.quiz-btn-hero:hover {
+    transform: scale(1.05);
+    background-color: transparent;
+    border-color: var(--coral);
+    color: var(--coral);
+    box-shadow: 0 10px 30px rgba(255, 127, 80, 0.3);
+}
