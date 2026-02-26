@@ -120,4 +120,4 @@
 @media (max-width: 1024px) {
     .mega-num { font-size: 75px; }
     .stories-grid { grid-template-columns: 1fr; } /* Stack bubbles on mobile */
-} 
+}
