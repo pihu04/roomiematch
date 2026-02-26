@@ -1,0 +1,231 @@
+/* Quiz — glassmorphism modal & embedded */
+.quiz-wrap {
+  width: 100%;
+}
+
+.quiz-wrap--embedded .quiz__panel {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.quiz {
+  position: relative;
+  width: 100%;
+}
+
+.quiz--modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.quiz__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.quiz__panel {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+.quiz__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--text-muted);
+  transition: color var(--transition), background var(--transition);
+  border-radius: var(--radius);
+}
+
+.quiz__close:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.quiz__progress {
+  margin-bottom: 1.5rem;
+}
+
+.quiz__progress-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.quiz__progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.quiz__progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.quiz__question-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+}
+
+.quiz__question-icon {
+  font-size: 1.5rem;
+}
+
+.quiz__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.quiz__option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 1rem;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.quiz__option:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 95, 31, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 95, 31, 0.1);
+}
+
+.quiz__option--selected {
+  border-color: var(--accent);
+  background: rgba(255, 95, 31, 0.08);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.quiz__option-icon {
+  font-size: 1.25rem;
+}
+
+.quiz__option-label {
+  font-weight: 500;
+}
+
+.quiz__next {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.quiz__next:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.quiz__next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Summary screen */
+.quiz__summary {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.quiz__summary-icon {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.quiz__summary-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.quiz__summary-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.quiz__summary-cta {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.quiz__summary-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .quiz__panel {
+    padding: 2rem;
+    max-width: 520px;
+  }
+
+  .quiz__question-title {
+    font-size: 1.5rem;
+  }
+
+  .quiz__option {
+    padding: 1.1rem 1.35rem;
+  }
+}

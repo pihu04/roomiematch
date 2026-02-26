@@ -1,0 +1,28 @@
+/* App layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__main {
+  flex: 1;
+  position: relative;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 2rem 1.5rem 4rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 3rem 2rem 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 4rem 3rem 8rem;
+  }
+}

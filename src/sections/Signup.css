@@ -1,0 +1,128 @@
+.signup {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.signup__inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.signup__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.signup__subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.signup__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.signup__label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.signup__input,
+.signup__select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23A1A1AA' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.signup__input {
+  background-image: none;
+  padding-right: 1.25rem;
+}
+
+.signup__input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.signup__input:focus,
+.signup__select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 95, 31, 0.15);
+}
+
+.signup__error {
+  font-size: 0.85rem;
+  color: #f87171;
+}
+
+.signup__submit {
+  margin-top: 0.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: var(--radius);
+  transition: background var(--transition), transform var(--transition);
+  width: 100%;
+}
+
+.signup__submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.signup__toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 2rem);
+  padding: 1rem 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  color: var(--text);
+  font-weight: 500;
+  text-align: center;
+  z-index: 1000;
+  border-color: rgba(255, 95, 31, 0.3);
+}
+
+@media (min-width: 768px) {
+  .signup__toast {
+    bottom: 2.5rem;
+    padding: 1.25rem 2rem;
+  }
+}
