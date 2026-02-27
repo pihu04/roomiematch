@@ -1157,72 +1157,93 @@ body {
         padding: 32px 24px;
     }
 }
-/* Section background (soft light gray like screenshot) */
-.stats-section {
-  padding: 80px 20px;
-  background: #f7f8fb;
+/* Container */
+.mega-center-container {
+  width: 100%;
+  padding: 72px 18px;
 }
 
-/* Grid layout */
-.stats-grid {
+/* 2x2 layout */
+.mega-grid {
   max-width: 1100px;
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 32px;
 }
 
-/* Card styling */
-.stat-card {
-  background: #ffffff;
-  border-radius: 28px;
-  height: 220px;
+/* Pill card - glass */
+.mega-pill {
+  height: 210px;
+  border-radius: var(--radius-card);
+
+  background: var(--glass-card);
+  border: 1px solid var(--border-light);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 
+  /* glass blur */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  /* soft glow */
   box-shadow:
-    0 20px 60px rgba(15, 23, 42, 0.06),
-    0 4px 12px rgba(15, 23, 42, 0.04);
+    0 18px 60px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
 }
 
-/* Subtle hover effect */
-.stat-card:hover {
+.mega-pill:hover {
   transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow:
-    0 30px 80px rgba(15, 23, 42, 0.08),
-    0 6px 16px rgba(15, 23, 42, 0.05);
+    0 26px 80px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Large number */
-.stat-number {
-  font-size: clamp(48px, 5vw, 80px);
+/* Big number */
+.mega-num {
+  font-size: clamp(48px, 5vw, 86px);
   font-weight: 800;
   line-height: 1;
-  letter-spacing: -1px;
-  color: #b48f8f; /* muted pink tone */
+  letter-spacing: -0.02em;
+
+  /* theme-friendly warm accent */
+  background: linear-gradient(90deg, rgba(255, 140, 0, 0.95), rgba(255, 95, 31, 0.85));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Label */
-.stat-label {
-  margin-top: 12px;
-  font-size: 22px;
-  font-weight: 500;
-  color: #5c6677;
+.mega-label {
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
 }
 
-/* Responsive: stack on mobile */
-@media (max-width: 768px) {
-  .stats-grid {
+/* Star style */
+.mega-star {
+  font-size: 0.75em;
+  margin-left: 6px;
+  vertical-align: 8%;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile: stack */
+@media (max-width: 760px) {
+  .mega-grid {
     grid-template-columns: 1fr;
   }
 
-  .stat-card {
+  .mega-pill {
     height: 190px;
   }
 }
